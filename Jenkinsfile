@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'jdk8' }
 
     stages {
         stage('Build') {
