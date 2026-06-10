@@ -9,6 +9,7 @@ pipeline {
                     sh '''
                         rsync -a /opt/project/ $WORKSPACE
                         cd $WORKSPACE
+                        ls
                         mvn clean install
                     '''
                 }
