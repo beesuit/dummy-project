@@ -6,7 +6,11 @@ pipeline {
             steps {
                 script {
                     // Make sure Maven is installed on your Jenkins agent or use docker agent with Maven
-                    sh 'mvn clean install'
+                    sh '''
+                        rsync -a /opt/project/ $WORKSPACE
+                        cd $WORKSPACE
+                        mvn clean install
+                    '''
                 }
             }
         }
