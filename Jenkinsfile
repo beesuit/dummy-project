@@ -8,7 +8,7 @@ pipeline {
                     // Make sure Maven is installed on your Jenkins agent or use docker agent with Maven
                     sh '''
                         rsync -a /opt/project/ $WORKSPACE
-                        cd $WORKSPACE
+                        cd $WORKSPACE/TAUtilities_3.0.0
                         ls
                         mvn clean install
                     '''
