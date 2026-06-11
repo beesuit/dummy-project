@@ -38,5 +38,9 @@ pipeline {
         success {
             archiveArtifacts artifacts: 'target/*.jar'
           }
+        always {
+            archiveArtifacts artifacts: '**/target/surefire-reports/**', allowEmptyArchive: true
+            junit '**/target/surefire-reports/*.xml'
+          }
       }
 }
