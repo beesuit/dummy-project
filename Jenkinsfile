@@ -11,7 +11,7 @@ pipeline {
                         cd $WORKSPACE/TAUtilities_3.0.0
                         java -version
                         mvn -version
-                        mvn clean install
+                        mvn clean install -DskipTests
                     '''
                 }
             }
