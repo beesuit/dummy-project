@@ -9,7 +9,8 @@ pipeline {
                     sh '''
                         rsync -a /opt/project/ $WORKSPACE
                         cd $WORKSPACE/TAUtilities_3.0.0
-                        ls
+                        java -version
+                        mvn -version
                         mvn clean install
                     '''
                 }
