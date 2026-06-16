@@ -19,9 +19,7 @@ pipeline {
 
                         cd $WORKSPACE/engineering
                         mvn clean install -DskipTests
-
-                        cd $WORKSPACE/engineering
-                        mvn clean install -DskipTests
+                        cd $WORKSPACE/Installer
                         mvn clean assembly:assembly -DskipTests
                         mvn package -f izpack-pom.xml -DskipTests
                         mvn install -f izpack-pom.xml antrun:run -DskipTests
