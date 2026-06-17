@@ -25,7 +25,7 @@ pipeline {
                         mvn install -f izpack-pom.xml antrun:run -DskipTests
 
                         cd $WORKSPACE/production
-                        mvn clean install -DskipTests
+                        mvn -U clean install -DskipTests
                         mvn package assembly:assembly -DskipTests
                     '''
                 }
@@ -37,7 +37,10 @@ pipeline {
                 script {
                     sh '''
                         cd $WORKSPACE/production
-                        mvn package -f izpack-pom.xml antrun:run -DskipTests
+                        echo "HOME=$HOME"
+                        mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout
+                        whoami
+                        mvn -U package -f izpack-pom.xml antrun:run -DskipTests
                     '''
                 }
             }
