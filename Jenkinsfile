@@ -18,14 +18,23 @@ pipeline {
                         mvn clean install -DskipTests
 
                         cd $WORKSPACE/engineering
-                        mvn -U clean install -DskipTests
+                        mvn clean install -DskipTests
                         cd $WORKSPACE/engineering/Installer
                         mvn clean assembly:assembly -DskipTests
                         mvn package -f izpack-pom.xml -DskipTests
                         mvn install -f izpack-pom.xml antrun:run -DskipTests
 
+                        if [ ! -f /home/jenkins/.m2/repository/com/oracle/jre/1.6_45x64/jre-1.6_45x64.zip ]; then
+                          mvn install:install-file \
+                            -Dfile=/home/jenkins/jre-1.6_45x64.zip \
+                            -DgroupId=com.oracle \
+                            -DartifactId=jre \
+                            -Dversion=1.6_45x64 \
+                            -Dpackaging=zip
+                        fi
+
                         cd $WORKSPACE/production
-                        mvn -U clean install -DskipTests
+                        mvn clean install -DskipTests
                         mvn package assembly:assembly -DskipTests
                     '''
                 }
@@ -37,10 +46,7 @@ pipeline {
                 script {
                     sh '''
                         cd $WORKSPACE/production
-                        echo "HOME=$HOME"
-                        mvn help:evaluate -Dexpression=settings.localRepository -q -DforceStdout
-                        whoami
-                        mvn -U package -f izpack-pom.xml antrun:run -DskipTests
+                        mvn package -f izpack-pom.xml antrun:run -DskipTests
                     '''
                 }
             }
