@@ -57,6 +57,12 @@ pipeline {
         success {
             archiveArtifacts artifacts: 'target/*.jar'
           }
+        failure {
+            sh '''
+                echo "Build failed. Sleeping for debugging..."
+                sleep 3600
+            '''
+          }
         always {
             archiveArtifacts artifacts: '**/target/surefire-reports/**', allowEmptyArchive: true
             junit '**/target/surefire-reports/*.xml'
