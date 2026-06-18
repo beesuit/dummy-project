@@ -12,13 +12,13 @@ pipeline {
                         mvn -version
 
                         cd $WORKSPACE/TAUtilities_3.0.0
-                        mvn clean install -DskipTests
+                        mvn clean install -Dmaven.test.failure.ignore=true
 
                         cd $WORKSPACE/common
-                        mvn clean install -DskipTests
+                        mvn clean install -Dmaven.test.failure.ignore=true
 
                         cd $WORKSPACE/engineering
-                        mvn clean install -DskipTests
+                        mvn clean install -Dmaven.test.failure.ignore=true
                         cd $WORKSPACE/engineering/Installer
                         mvn clean assembly:assembly -DskipTests
                         mvn package -f izpack-pom.xml -DskipTests
@@ -34,7 +34,7 @@ pipeline {
                         fi
 
                         cd $WORKSPACE/production
-                        mvn install -DskipTests
+                        mvn clean install -Dmaven.test.failure.ignore=true
                         mvn package assembly:assembly -DskipTests
                     '''
                 }
