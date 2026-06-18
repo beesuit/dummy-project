@@ -34,7 +34,7 @@ pipeline {
                         fi
 
                         cd $WORKSPACE/production
-                        mvn clean install -DskipTests
+                        mvn install -DskipTests
                         mvn package assembly:assembly -DskipTests
                     '''
                 }
