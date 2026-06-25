@@ -7,7 +7,6 @@ pipeline {
                 script {
                     // Make sure Maven is installed on your Jenkins agent or use docker agent with Maven
                     sh '''
-                        rsync -a /opt/project/ $WORKSPACE
                         java -version
                         mvn -version
 
