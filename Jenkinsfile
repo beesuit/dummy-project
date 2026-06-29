@@ -9,6 +9,7 @@ pipeline {
                     sh '''
                         java -version
                         mvn -version
+                        mvn -X compile
 
                         echo "sleeping"
                         sleep 360
