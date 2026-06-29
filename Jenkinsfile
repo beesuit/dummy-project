@@ -11,7 +11,7 @@ pipeline {
                         mvn -version
 
                         echo "sleeping"
-                        sleep 3600
+                        sleep 360
 
                         cd $WORKSPACE/TAUtilities_3.0.0
                         mvn clean install -Dmaven.test.failure.ignore=true
